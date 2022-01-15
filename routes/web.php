@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ParentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,15 +17,4 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-
-Route::get('/helow/{name}', function (string $name) {
-    return view('helow', ['name' => $name]);
-});
-
-Route::get('/info', function () {
-    return view('info');
-});
-
-Route::get('/news', function () {
-    return view('news');
-});
+Route::get('/news', [ParentController::class, 'index']);
