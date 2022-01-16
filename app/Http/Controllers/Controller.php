@@ -14,12 +14,12 @@ class Controller extends BaseController
     public function getArrayNews(): array {
         $faker = Factory::create();
         $myNews = [];
-        for ($i=0; $i < 10; $i++) {
+        for ($i=0; $i < 30; $i++) {
             $myNews[] = [
                 'id' => $i,
                 'id_category' => $i%4,
                 'title' => $faker->jobTitle(),
-                'disc' => $faker->text(50),
+                'disc' => $faker->text(150),
                 'author' => $faker->userName(),
                 'created_at' => now('Europe/Moscow')
             ];
@@ -27,10 +27,11 @@ class Controller extends BaseController
         return $myNews;
     }
     public function getAllNews() : array {
-        $myAllNews=[];
-        for ($i=0; $i < 5 ; $i++) {
-            $myAllNews[] = ['Категория №' . $i => $this->getArrayNews()];
-        }
-        return $myAllNews;
+        // $myAllNews=[];
+        // for ($i=0; $i < 5 ; $i++) {
+        //     $myAllNews[] = ['Категория №' . $i => $this->getArrayNews()];
+        // }
+        // return $myAllNews;
+        return $this->getArrayNews();
     }
 }

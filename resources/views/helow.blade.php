@@ -8,6 +8,8 @@
     <title>Document</title>
 </head>
 <body>
-<div class="two"><h1>Hello {{$name}}</h1></div>
+<div class="two"><h1>Hello</h1>
+<p class="helloP">Вас приветствует новостной сайт</p></div>
+<a href="/news">Все новости</a>
 </body>
 </html>
