@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\CategoryNewsController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ParentController;
+use App\Http\Controllers\SingleNewsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,17 +17,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('helow');
 });
-
-Route::get('/helow/{name}', function (string $name) {
-    return view('helow', ['name' => $name]);
-});
-
-Route::get('/info', function () {
-    return view('info');
-});
-
-Route::get('/news', function () {
-    return view('news');
-});
+Route::get('/news', [ParentController::class, 'index']);
+Route::get('/categoryNews/{category_id}', [CategoryNewsController::class, 'index']);
+Route::get('/singleNews/{id}', [SingleNewsController::class, 'index']);
