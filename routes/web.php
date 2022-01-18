@@ -17,8 +17,9 @@ use App\Http\Controllers\SingleNewsController;
 */
 
 Route::get('/', function () {
-    return view('helow');
+    return view('hello');
 });
 Route::get('/news', [ParentController::class, 'index']);
 Route::get('/categoryNews/{category_id}', [CategoryNewsController::class, 'index']);
 Route::get('/singleNews/{id}', [SingleNewsController::class, 'index']);
+Route::get('/categoryNews', [CategoryNewsController::class, 'allcatigories']);
