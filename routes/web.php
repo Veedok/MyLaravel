@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\MyAdminController;
 use App\Http\Controllers\CategoryNewsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ParentController;
@@ -23,3 +24,6 @@ Route::get('/news', [ParentController::class, 'index']);
 Route::get('/categoryNews/{category_id}', [CategoryNewsController::class, 'index']);
 Route::get('/singleNews/{id}', [SingleNewsController::class, 'index']);
 Route::get('/categoryNews', [CategoryNewsController::class, 'allcatigories']);
+Route::group(['as' => 'admin.'], function() {
+Route::resource('/admin/myAdmin', MyAdminController::class);
+});
