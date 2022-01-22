@@ -9,7 +9,7 @@ class ParentController extends Controller
 {
     public function index () {
         $news = $this->getAllNews();
-        return view('index', [
+        return view('allnews', [
             'new' => $news
         ]);
     }

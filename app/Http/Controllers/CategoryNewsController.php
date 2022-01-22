@@ -14,7 +14,10 @@ class CategoryNewsController extends Controller
             array_push($filterNews, $value);
             }
         }
-        return view('categoryNews',['news' => $filterNews]);
+        return view('catigoriesnews',['news' => $filterNews]);
 
+    }
+    public function allcatigories() {
+        return view('allcatigories');
     }
 }

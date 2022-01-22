@@ -19,7 +19,7 @@ class Controller extends BaseController
                 'id' => $i,
                 'id_category' => $i%4,
                 'title' => $faker->jobTitle(),
-                'disc' => $faker->text(150),
+                'disc' => $faker->text(800),
                 'author' => $faker->userName(),
                 'created_at' => now('Europe/Moscow')
             ];
