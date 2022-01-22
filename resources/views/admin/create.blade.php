@@ -5,29 +5,34 @@
         <form class="adress_form" action='{{route('admin.myAdmin.store')}}' method="POST">
             @csrf
             <h4>Shipping Adress</h4>
-            <input class="f-points" type="text" name="title" placeholder="Заголовок" id="title">
-            <textarea class="f-points" name="desc" id="discription" cols="30" rows="10" placeholder="Новость"></textarea>
-            <input class="f-points" type="text" name="author" placeholder="Автор" id="author">
-            <input type="checkbox" name="myCheck" id="1">
+            <input class="f-points" type="text" name="title" placeholder="Заголовок" id="title" value="{{old('title')}}">
+            <textarea class="f-points" name="desc" id="discription" cols="30" rows="10" placeholder="Новость" value="{{old('desc')}}"></textarea>
+            <input class="f-points" type="text" name="author" placeholder="Автор" id="author" value="{{old('author')}}">
+            {{-- <input type="file" name="image" class="form-control"> --}}
             <input class="sub_form" type="submit" value="Опобликовать" >
-            {{-- <div class="select"><select class="f-points f_p_s" id="city">
-                    <option>Bangladesh</option>
-                    <option>Bangladesh</option>
-                    <option>Bangladesh</option>
-                    <option>Bangladesh</option>
-                    <option>Bangladesh</option>
-                    <option>Bangladesh</option>
-                    <option>Bangladesh</option>
-                    <option>Bangladesh</option>
-                </select></div>
+            {{-- <label class="lable_checkbox">
+                <input type="checkbox" name="myCheck" id="1">
+                <span>Галочка</span>
+                </label>
             <input class="f-points" type="number" placeholder="Postcode / Zip"> --}}
         </form>
     </div>
     <div>
-        <form class="cupon_form" action="#">
+        <form class="cupon_form" action="{{route('admin.myAdmin.store')}}" method="POST">
+            @csrf
             <h4>Shipping Adress</h4>
-            <h5>Enter your coupon code if you have one</h5>
-            <input class="f-points" type="text" placeholder="State">
+            <input class="f-points" type="text" placeholder="Your Name" name="name">
+            <input class="f-points" type="tel" name="tel" id="phone" placeholder="Your phone">
+            <input class="f-points" type="email" name="email" id="mail" placeholder="Your Email">
+            <div class="select">
+                <select class="f-points f_p_s" id="city" name="info" placeholder="ggg">
+                    <option>Количество Авторов</option>
+                    <option>Количество статей</option>
+                    <option>Статей в каждой теме</option>
+                    <option selected>Ничего не выбрано</option>
+
+                </select>
+            </div>
             <input class="sub_form" type="submit" value="Apply coupon">
         </form>
     </div>

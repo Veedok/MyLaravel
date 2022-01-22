@@ -35,14 +35,18 @@ class MyAdminController extends Controller
      */
     public function store(Request $request)
     {
-       if($request->input('myCheck') == 'on'){
-           echo "Галочка";
-
-       } elseif($request->input('myCheck') == null) {
-        echo "Без Галочки";
-       };
-
-      dd($request->all());
+        // $request->validate([
+        //     'title' => ['required', 'string' , 'min:10'],
+        //     'desc' => ['string' , 'min:100'],
+        //     'author' => ['string' , 'min:10']
+        // ]);
+        $arrayForSql = $request->except('_token');
+        // $testimg = time().'.'.$request->image;
+        // $request->image->move(public_path('testimg'), $testimg);
+        date_default_timezone_set("Europe/Moscow");
+        $timecod = date("Y-m-d H:i:s");
+        $arrayForSql['publicationDdate'] = $timecod;
+        dd($arrayForSql);
     }
 
     /**
