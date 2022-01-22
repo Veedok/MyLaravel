@@ -40,12 +40,14 @@ class MyAdminController extends Controller
         //     'desc' => ['string' , 'min:100'],
         //     'author' => ['string' , 'min:10']
         // ]);
-        $arrayForSql = $request->except('_token');
-        // $testimg = time().'.'.$request->image;
-        // $request->image->move(public_path('testimg'), $testimg);
+        $arrayForSql = $request->except('_token', 'image');
+        $test = $request->file('image')->store('testImg', 'public');
+
         date_default_timezone_set("Europe/Moscow");
         $timecod = date("Y-m-d H:i:s");
+        $arrayForSql['imgPath'] = $test;
         $arrayForSql['publicationDdate'] = $timecod;
+
         dd($arrayForSql);
     }
 

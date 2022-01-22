@@ -2,13 +2,13 @@
 @section('content')
 <aside class="container s_c_form">
     <div>
-        <form class="adress_form" action='{{route('admin.myAdmin.store')}}' method="POST">
+        <form class="adress_form" action='{{route('admin.myAdmin.store')}}' method="POST" enctype="multipart/form-data">
             @csrf
             <h4>Shipping Adress</h4>
             <input class="f-points" type="text" name="title" placeholder="Заголовок" id="title" value="{{old('title')}}">
             <textarea class="f-points" name="desc" id="discription" cols="30" rows="10" placeholder="Новость" value="{{old('desc')}}"></textarea>
             <input class="f-points" type="text" name="author" placeholder="Автор" id="author" value="{{old('author')}}">
-            {{-- <input type="file" name="image" class="form-control"> --}}
+            <label class="f-points lablefromfile" for="file_input"><input class="myinput" id="file_input"  type="file" name="image">Загрузи что то</label>
             <input class="sub_form" type="submit" value="Опобликовать" >
             {{-- <label class="lable_checkbox">
                 <input type="checkbox" name="myCheck" id="1">
@@ -38,5 +38,8 @@
     </div>
 
 </aside>
+@isset($path)
+<img src="{{ asset('/storage/' . $path)}}" alt="#">
+@endisset
 @endsection
 
