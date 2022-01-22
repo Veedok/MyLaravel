@@ -24,7 +24,7 @@ class MyAdminController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.create');
     }
 
     /**
@@ -35,7 +35,14 @@ class MyAdminController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       if($request->input('myCheck') == 'on'){
+           echo "Галочка";
+
+       } elseif($request->input('myCheck') == null) {
+        echo "Без Галочки";
+       };
+
+      dd($request->all());
     }
 
     /**

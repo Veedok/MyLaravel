@@ -98,7 +98,7 @@
 
 .s_c_button button:hover {
     background-color: #efefef;
-    
+
 }
 .s_c_button button {
     cursor: pointer;
@@ -124,7 +124,7 @@
 .s_c_form {
     margin-top: 63px;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 
 
@@ -155,6 +155,9 @@
     .text_stayle_mixin(13px, 1.2, 300);
 
 }
+#discription {
+    height: 150px;
+}
 
 
 .f_p_s {
@@ -170,8 +173,9 @@
 }
 
 .total {
-    display: inline-table;
-    text-align: end;
+    display: flex;
+    justify-content: space-between;
+    min-width: 1000px;
     padding: 43px;
     background-color: #f5f3f3;
 }
@@ -184,7 +188,10 @@
     font-family: FontAwesome;
 }
 
-.total button {
+.total a {
+    text-decoration: none;
+    text-align: center;
+    padding-top: 14px;
     margin-top: 17px;
     border: none;
     cursor: pointer;
