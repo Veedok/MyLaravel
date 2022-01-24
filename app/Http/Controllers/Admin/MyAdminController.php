@@ -59,9 +59,9 @@ class MyAdminController extends Controller
         } elseif(array_key_exists('form2', $request->all())) {
             $arrayForSql = $request->except('_token');
             Storage::disk('public')->put("/text/formContact". time() .".json", json_encode($arrayForSql));
-            dd($arrayForSql);
+            return json_encode($arrayForSql);
         }
-        echo ('без elseif');
+        return json_encode($request->all());
 
     }
 
