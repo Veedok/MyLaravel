@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\News;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -51,11 +52,13 @@ class MyAdminController extends Controller
             // Формируем массив для БД из него исключаем токен и данные картинки т.к. путь к ней мы получим другим способо а в БД нам нужен только путь к картинке
             $arrayForSql = $request->except('_token', 'image');
             // Получаем путь к картинке и записываем его в массив для MySql
-            $arrayForSql['imgPath'] = $request->file('image')->store('testImg', 'public');
+            $arrayForSql['imgPath'] =$request->file('image')->store('testImg', 'public');
             // Записываем данные массива для БД в файл json
             Storage::disk('public')->put("/text/formNews". time() .".json", json_encode($arrayForSql));
             // Проверка
-            dd($arrayForSql);
+           //  dd($arrayForSql['imgPath']);
+            $addNews = new News();
+            $addNews->addNews($arrayForSql['title'], $arrayForSql['author'], $arrayForSql['desc'], $arrayForSql['imgPath']);
         } elseif(array_key_exists('form2', $request->all())) {
             $arrayForSql = $request->except('_token');
             Storage::disk('public')->put("/text/formContact". time() .".json", json_encode($arrayForSql));
