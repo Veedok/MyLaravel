@@ -22,10 +22,8 @@ class catigoryiesSeeder extends Seeder
         $myNews = [];
         for ($i=0; $i < 30; $i++) {
             $myNews[] = [
-                'title' => $faker->jobTitle(),
-                'desc' => $faker->text(800),
-                'author' => $faker->userName(),
-                'imgPath' => $faker->userName()
+                'catigory' => $faker->jobTitle(),
+
             ];
         }
 

@@ -11,7 +11,7 @@ class News extends Model
     use HasFactory;
     protected $table = 'news';
     public function getNews () {
-        return DB::table($this->table)->select(['id', 'title', 'author', 'desc'])->get()->toArray();
+        return DB::table($this->table)->select(['id', 'title', 'author', 'desc', 'imgPath'])->get()->toArray();
     }
     public function getNewsByID ($id) {
         return DB::select("select * where id = :id from {$this->table}", ['id' => $id]);

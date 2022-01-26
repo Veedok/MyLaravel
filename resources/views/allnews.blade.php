@@ -73,7 +73,8 @@
                                 <img src="img/cart.png" alt="">
                             <span>Add to Cart</span></div>
                         </div>
-                        @if ($value->id%4 ==0)
+                        <img class="img_card" src="{{ asset('storage/' . $value->imgPath) }}" alt="">
+                        {{-- @if ($value->id%4 ==0)
                             <img src="img/Product/image_placeholder_1657.jpg" alt="">
                         @elseif ($value->id%4 ==1)
                             <img src="img/Product/image_placeholder_1877.png" alt="">
@@ -81,7 +82,7 @@
                             <img src="img/Product/image_placeholder_1907.png" alt="">
                         @elseif ($value->id%4 ==3)
                             <img src="img/Product/image_placeholder_1937.jpg" alt="">
-                        @endif
+                        @endif --}}
 
                     <p class="catalog_text">{{$value->title}}</p>
 

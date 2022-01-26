@@ -54,7 +54,7 @@ class MyAdminController extends Controller
             // Получаем путь к картинке и записываем его в массив для MySql
             $arrayForSql['imgPath'] =$request->file('image')->store('testImg', 'public');
             // Записываем данные массива для БД в файл json
-            Storage::disk('public')->put("/text/formNews". time() .".json", json_encode($arrayForSql));
+            // Storage::disk('public')->put("/text/formNews". time() .".json", json_encode($arrayForSql));
             // Проверка
            //  dd($arrayForSql['imgPath']);
             $addNews = new News();

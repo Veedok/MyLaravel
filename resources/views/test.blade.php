@@ -1,5 +1,5 @@
 @forelse ($news as $key => $value )
-@dump($value->title)
+@dump($value)
 
 @empty
 
