@@ -761,6 +761,7 @@ p {
 }
 .img_card {
   max-width: 263px;
+  max-height: 281px;
 }
 .items_2 {
   background-image: url(../img/item-2.png);

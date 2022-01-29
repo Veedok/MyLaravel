@@ -18,7 +18,7 @@ class CreateNewsTable extends Migration
             $table->string('title', 200 );
             $table->string('author', 100)->default('No Name News');
             $table->text('desc');
-            $table->string('imgPath', 255);
+            $table->string('imgPath', 255)->default('testImg/2jJlanXDbUFm2b1P2d1cQMxIZualVDSGlwblvI7G.jpg');
             $table->timestamps();
         });
     }

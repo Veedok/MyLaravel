@@ -10,11 +10,11 @@ class ParentController extends Controller
 {
     public function index () {
 
-        $myNews = new News();
+       $myNews = News::query()->select(News::$select)->get();
         // dd($myNews->getNews());
         // $news = $this->getAllNews();
         return view('allnews', [
-            'new' => $myNews->getNews()
+            'new' => $myNews
         ]);
     }
 }

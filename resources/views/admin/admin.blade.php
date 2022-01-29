@@ -9,5 +9,14 @@
         <a href="">Удалить Новость</a>
     </div>
 </aside>
+{{-- <div>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>disc</th>
+        </tr>
+    </thead>
+</div> --}}
 @endsection
 

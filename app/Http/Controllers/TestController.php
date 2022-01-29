@@ -9,10 +9,10 @@ class TestController extends Controller
 {
     public function index () {
 
-        $myNews = new News();
+        $myNews = News::all();
 
-        // dd($myNews->getNews());
-        return view('test',['news' => $myNews->getNews()]);
+        // dd($myNews);
+        return view('test',['news' => $myNews]);
 
 
     }
