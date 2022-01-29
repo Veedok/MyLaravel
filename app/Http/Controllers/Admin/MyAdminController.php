@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+
+use function GuzzleHttp\json_decode;
 
 class MyAdminController extends Controller
 {
@@ -24,7 +27,7 @@ class MyAdminController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.create');
     }
 
     /**
@@ -35,7 +38,31 @@ class MyAdminController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // $request->validate([
+        //     'title' => ['required', 'string' , 'min:10'],
+        //     'desc' => ['string' , 'min:100'],
+        //     'author' => ['string' , 'min:10']
+        // ]);
+        $arrayForSql = [];
+        // Тут формируем и дописываем в массив дату время в формате MySql
+        date_default_timezone_set("Europe/Moscow");
+        $arrayForSql['publicationDdate'] = date("Y-m-d H:i:s");
+        if (array_key_exists('form1', $request->all())) {
+            // Формируем массив для БД из него исключаем токен и данные картинки т.к. путь к ней мы получим другим способо а в БД нам нужен только путь к картинке
+            $arrayForSql = $request->except('_token', 'image');
+            // Получаем путь к картинке и записываем его в массив для MySql
+            $arrayForSql['imgPath'] = $request->file('image')->store('testImg', 'public');
+            // Записываем данные массива для БД в файл json
+            Storage::disk('public')->put("/text/formNews". time() .".json", json_encode($arrayForSql));
+            // Проверка
+            dd($arrayForSql);
+        } elseif(array_key_exists('form2', $request->all())) {
+            $arrayForSql = $request->except('_token');
+            Storage::disk('public')->put("/text/formContact". time() .".json", json_encode($arrayForSql));
+            return json_encode($arrayForSql);
+        }
+        return json_encode($request->all());
+
     }
 
     /**

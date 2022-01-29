@@ -1636,7 +1636,7 @@ input::-webkit-inner-spin-button {
 .s_c_form {
   margin-top: 63px;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 .s_c_form h5 {
   color: #000000;
@@ -1671,6 +1671,9 @@ input::-webkit-inner-spin-button {
   line-height: 1.2;
   font-weight: 300;
 }
+#discription {
+  height: 150px;
+}
 .f_p_s {
   padding: 0.5em 2.25em 0.5em 1em;
   -webkit-appearance: none;
@@ -1683,8 +1686,9 @@ input::-webkit-inner-spin-button {
   color: #555;
 }
 .total {
-  display: inline-table;
-  text-align: end;
+  display: flex;
+  justify-content: space-between;
+  min-width: 1000px;
   padding: 43px;
   background-color: #f5f3f3;
 }
@@ -1696,7 +1700,10 @@ input::-webkit-inner-spin-button {
   content: "\f0d7";
   font-family: FontAwesome;
 }
-.total button {
+.total a {
+  text-decoration: none;
+  text-align: center;
+  padding-top: 14px;
   margin-top: 17px;
   border: none;
   cursor: pointer;
@@ -1746,6 +1753,14 @@ input::-webkit-inner-spin-button {
 }
 .sub_form:hover {
   background-color: #d8d8d8;
+}
+.myinput {
+  opacity: 0;
+  position: absolute;
+  z-index: -1;
+}
+.lablefromfile {
+  cursor: pointer;
 }
 .flex_checkout {
   display: flex;
