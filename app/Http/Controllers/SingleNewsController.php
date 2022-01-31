@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\News;
 use Illuminate\Http\Request;
 
 class SingleNewsController extends Controller
 {
     public function index($idNews) {
-        $allNews = $this->getAllNews();
-        foreach ($allNews as $key => $value) {
-            if($value['id'] == $idNews){
+
+        $allNews = new News();
+        foreach ($allNews->getNews() as $key => $value) {
+            if($value->id == $idNews){
                 return view('singleNews',['news' => $value]);
             }
         }
