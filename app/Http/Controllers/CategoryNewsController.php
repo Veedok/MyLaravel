@@ -15,8 +15,8 @@ class CategoryNewsController extends Controller
             }
         }
         return view('catigoriesnews',['news' => $filterNews]);
-
     }
+    
     public function allcatigories() {
         return view('allcatigories');
     }

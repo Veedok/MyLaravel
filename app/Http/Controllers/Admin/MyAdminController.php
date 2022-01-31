@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Catrgoty;
 use App\Models\News;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 use function GuzzleHttp\json_decode;
 
@@ -18,7 +21,12 @@ class MyAdminController extends Controller
      */
     public function index()
     {
-       return view('admin.admin');
+        $news = News::paginate(5);
+        $cat = Catrgoty::all();
+        return view('admin.admin', [
+            'news' => $news,
+            'cat' => $cat
+        ]);
     }
 
     /**
@@ -28,7 +36,9 @@ class MyAdminController extends Controller
      */
     public function create()
     {
-        return view('admin.create');
+        $cat = Catrgoty::all();
+
+        return view('admin.create', ['categories' => $cat]);
     }
 
     /**
@@ -39,42 +49,46 @@ class MyAdminController extends Controller
      */
     public function store(Request $request)
     {
-        // $request->validate([
-        //     'title' => ['required', 'string' , 'min:10'],
-        //     'desc' => ['string' , 'min:100'],
-        //     'author' => ['string' , 'min:10']
-        // ]);
-        $arrayForSql = [];
-        // Тут формируем и дописываем в массив дату время в формате MySql
-        date_default_timezone_set("Europe/Moscow");
-        $arrayForSql['publicationDdate'] = date("Y-m-d H:i:s");
-        if (array_key_exists('form1', $request->all())) {
-            // Формируем массив для БД из него исключаем токен и данные картинки т.к. путь к ней мы получим другим способо а в БД нам нужен только путь к картинке
-            $arrayForSql = $request->except('_token', 'image');
-            // Получаем путь к картинке и записываем его в массив для MySql
-            $arrayForSql['imgPath'] =$request->file('image')->store('testImg', 'public');
-            // Записываем данные массива для БД в файл json
-            // Storage::disk('public')->put("/text/formNews". time() .".json", json_encode($arrayForSql));
-            // Проверка
-           //  dd($arrayForSql['imgPath']);
-            $addNews = new News();
-            $addNews->addNews($arrayForSql['title'], $arrayForSql['author'], $arrayForSql['desc'], $arrayForSql['imgPath']);
-        } elseif(array_key_exists('form2', $request->all())) {
-            $arrayForSql = $request->except('_token');
-            Storage::disk('public')->put("/text/formContact". time() .".json", json_encode($arrayForSql));
-            return json_encode($arrayForSql);
+        // $arrayForSql = [];
+        // if (array_key_exists('form1', $request->all())) {
+        //     // Формируем массив для БД из него исключаем токен и данные картинки т.к. путь к ней мы получим другим способо а в БД нам нужен только путь к картинке
+        //     $arrayForSql = $request->except('_token', 'image');
+        //     // Получаем путь к картинке и записываем его в массив для MySql
+        //     $arrayForSql['imgPath'] = $request->file('image')->store('testImg', 'public');
+        //     // Записываем данные массива для БД в файл json
+        //     // Storage::disk('public')->put("/text/formNews". time() .".json", json_encode($arrayForSql));
+        //     // Проверка
+        //     //  dd($arrayForSql['imgPath']);
+        //     $addNews = new News();
+        //     $addNews->addNews($arrayForSql['title'], $arrayForSql['author'], $arrayForSql['desc'], $arrayForSql['imgPath']);
+        // } elseif (array_key_exists('form2', $request->all())) {
+        //     $arrayForSql = $request->except('_token');
+        //     Storage::disk('public')->put("/text/formContact" . time() . ".json", json_encode($arrayForSql));
+        //     return json_encode($arrayForSql);
+        // }
+        // return json_encode($request->all());
+        $arrayForSql = $request->except('_token', 'image', 'form1', 'categories');
+        $arrayForSql['imgPath'] = $request->file('image')->store('testImg', 'public');
+        $created = News::create($arrayForSql);
+        if ($created) {
+            foreach ($request->input('categories') as $cat) {
+                DB::table('catygory_has_news')->insert([
+                    'catigory_id' => intval($cat),
+                    'news_id' => $created->id
+                ]);
+            }
+            return redirect()->route('admin.myAdmin.index');
         }
-        return json_encode($request->all());
-
+        dump($created);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  News $news
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(News $news)
     {
         //
     }
@@ -82,33 +96,51 @@ class MyAdminController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  News $myAdmin
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(News $myAdmin)
     {
-        //
+        $cat = Catrgoty::all();
+        $selected = DB::table('catygory_has_news')->where('news_id', $myAdmin->id)->get()->map(fn ($item) => $item->catigory_id)->toArray();
+        return view('admin.edit', [
+            'news' => $myAdmin,
+            'categories' => $cat,
+            'selected' => $selected
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  News $myAdmin
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, News $myAdmin)
     {
-        //
+        $arrayForSql = $request->except('_token', 'image', 'form1', 'categories');
+        $arrayForSql['imgPath'] = $request->file('image')->store('testImg', 'public');
+        $update = $myAdmin->fill($arrayForSql)->save();
+        if ($update) {
+            DB::table('catygory_has_news')->where('news_id', $myAdmin->id)->delete();
+            foreach ($request->input('categories') as $cat) {
+                DB::table('catygory_has_news')->insert([
+                    'catigory_id' => intval($cat),
+                    'news_id' => $myAdmin->id
+                ]);
+            }
+            return redirect()->route('admin.myAdmin.index');
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  News $news
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(News $news)
     {
         //
     }

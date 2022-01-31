@@ -11,10 +11,11 @@ use Illuminate\Routing\Controller as BaseController;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
-    public function getArrayNews() {
-
+    public function getArrayNews()
+    {
     }
-    public function getAllNews() {
+    public function getAllNews()
+    {
         // $myAllNews=[];
         // for ($i=0; $i < 5 ; $i++) {
         //     $myAllNews[] = ['Категория №' . $i => $this->getArrayNews()];
