@@ -64,7 +64,7 @@
             <article class="product_catalog">
                 <h2 class="hidden">All product</h2>
                 @forelse($new as $key => $value)
-                    <a href="/singleNews/{{ $value->id }}">
+                    <a href="admin/myAdmin/{{ $value->id }}">
                         <div class="catalog_card">
                             <div class="item_mask item_mask_product">
                                 <div class="buy_item">
@@ -83,7 +83,7 @@
                 @endforelse
             </article>
             {{$new->links('components.pagination')}}
-           
+
         </section>
     </div>
 @endsection

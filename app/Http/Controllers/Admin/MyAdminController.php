@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\News\UpdateRequest;
 use App\Models\Catrgoty;
 use App\Models\News;
 use Illuminate\Http\Request;
@@ -61,12 +62,13 @@ class MyAdminController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  News $news
+     * @param  News $myAdmin
      * @return \Illuminate\Http\Response
      */
-    public function show(News $news)
+    public function show(News $myAdmin)
     {
-        //
+
+       return view('singleNews', ['news' => $myAdmin]);
     }
 
     /**
@@ -76,7 +78,7 @@ class MyAdminController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request,News $myAdmin)
+    public function edit(Request $request, News $myAdmin)
     {
         $r = $request->header('referer');
         $cat = Catrgoty::all();
@@ -92,11 +94,11 @@ class MyAdminController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  UpdateRequest $request
      * @param  News $myAdmin
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, News $myAdmin)
+    public function update(UpdateRequest $request, News $myAdmin)
     {
         $arrayForSql = $request->except('_token', 'image', 'form1', 'categories');
         if ($request->image) {
@@ -104,9 +106,12 @@ class MyAdminController extends Controller
         }
         $update = $myAdmin->fill($arrayForSql)->save();
         if ($update) {
-            $myAdmin->categoriNews()->detach($myAdmin->categories);
-            foreach ($request->input('categories') as $cat) {
-                $myAdmin->categoriNews()->attach($cat);
+
+            if ($request->categories) {
+                $myAdmin->categoriNews()->detach($myAdmin->categories);
+                foreach ($request->input('categories') as $cat) {
+                    $myAdmin->categoriNews()->attach($cat);
+                }
             }
             return redirect($request->form1);
         }

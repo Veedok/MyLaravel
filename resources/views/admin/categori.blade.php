@@ -21,7 +21,7 @@
                         <th>{{ $catigory->catigory }}</th>
                         <th class="right_text">
                             <a class="redactCat" href="{{ route('admin.cat.edit', ['cat' => $catigory]) }}">Редактировать</a>
-                            <a href="javascript:" id="222" class="destroy redact" rel="{{ $catigory->id }}">Удалить</a></th>
+                            <a href="javascript:" id="222" class="destroy redactCat" rel="{{ $catigory->id }}">Удалить</a></th>
                     </tr>
                 @empty
                 @endforelse

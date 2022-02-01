@@ -3,7 +3,7 @@
     <aside class="container s_c_form">
         <div class="total">
             <a href="/admin/myAdmin/create">Добавить Новость</a>
-            <a href="cat">Редактор категорий</a>
+            
         </div>
     </aside>
     <div class="container">
@@ -28,7 +28,7 @@
                                 <p>{{ $cat->catigory }}</p>
                             @endforeach
                         </th>
-                        <th class="right_text">
+                        <th>
                             <a class="redact" href="{{ route('admin.myAdmin.edit', ['myAdmin' => $value]) }}">Редактировать</a>
                             <a href="javascript:" id="222" class="destroy redact" rel="{{ $value->id }}">Удалить</a>
                         </th>
