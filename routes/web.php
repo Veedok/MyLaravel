@@ -4,8 +4,9 @@ use App\Http\Controllers\Admin\MyAdminController;
 use App\Http\Controllers\CategoryNewsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ParentController;
-use App\Http\Controllers\SingleNewsController;
+use App\Http\Controllers\Admin\CetegoriesController;
 use App\Http\Controllers\TestController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -27,5 +28,6 @@ Route::get('/singleNews/{news}', [ParentController::class, 'show']);
 Route::get('/categoryNews', [CategoryNewsController::class, 'allcatigories']);
 Route::group(['as' => 'admin.'], function() {
 Route::resource('/admin/myAdmin', MyAdminController::class);
+Route::resource('/admin/cat', CetegoriesController::class);
 });
 Route::get('/test', [TestController::class, 'index']);

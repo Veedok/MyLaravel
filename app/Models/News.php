@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Facades\DB;
 
 class News extends Model
@@ -16,4 +17,8 @@ class News extends Model
     ];
 
 
+    public function categoriNews () : BelongsToMany {
+        return $this->belongsToMany(Catrgoty::class, 'catygory_has_news', 'news_id' , 'catigory_id');
+    }
 }
+

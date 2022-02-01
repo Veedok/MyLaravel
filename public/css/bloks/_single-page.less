@@ -3,7 +3,10 @@
 
 /*Стили для страницы товара*/
 /*Стили для изоброжения товара*/
+
 .single_scroll {
+    display: flex;
+    flex-direction: column-reverse;
     width: 100%;
     min-height: 777px;
     background-color: #f7f7f7;
@@ -78,6 +81,7 @@
 }
 
 .product_name {
+    margin-top: 100px;
     margin-bottom: 73px;
     text-transform: uppercase;
     color: #4d4d4d;
@@ -219,5 +223,5 @@ input::-webkit-inner-spin-button {
     .text_stayle_mixin(14px, 1.2, 400);
 }
 #output {
-    max-width: 355px;
+    width: 1250px;
 }

@@ -6,3 +6,12 @@ var loadFile = function(event) {
     }
 };
 
+// document.addEventListener('DOMContentLoaded', function() {
+//     let element = document.querySelector('.destroy');
+//     element.forEach(function(el,key) {
+//         el.addEventListener('click', function() {
+//             alert('allok');
+//         })
+//     });
+
+// })
