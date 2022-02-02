@@ -13,7 +13,7 @@ class CreateRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,10 @@ class CreateRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'title' => ['required', 'string', 'min:10', 'max:100'],
+            'author' => ['required', 'string', 'min:1', 'max:40'],
+            'desc' => ['required', 'string', 'min:10'],
+            'imgPath' => ['nullable', 'string']
         ];
     }
 }

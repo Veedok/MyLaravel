@@ -7,16 +7,28 @@
         <input accept="image/* class=" myinput" id="file_input" type="file" name="image"
             onchange="loadFile(event)">Загрузи что то</label>
     <img id="output" src="{{ asset('storage/') }}"/>
+    @error('image')
+        <div class="error">{{ $message }}</div>
+        @enderror
 </section>
 <section class="container product_description">
 
             @csrf
 
-            
+
         <input class="f-points product_name" type="text" name="title" placeholder="Заголовок" id="title" value="{{old('title')}}">
+        @error('title')
+        <div class="error">{{ $message }}</div>
+        @enderror
         <input class="f-points" type="text" name="author" placeholder="Автор" id="author"
         value="{{old('author')}}">
+        @error('author')
+        <div class="error">{{ $message }}</div>
+        @enderror
         <textarea class="f-points" name="desc" id="discription" cols="300" rows="10" placeholder="Новость">{{old('desc')}}</textarea>
+        @error('desc')
+        <div class="error">{{ $message }}</div>
+        @enderror
         <select class="f-points cat" name="categories[]" id="categories" multiple>
             @foreach ($categories as $cat )
 <option value="{{$cat->id}}">{{$cat->catigory}}</option>

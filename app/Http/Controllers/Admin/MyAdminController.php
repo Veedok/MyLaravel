@@ -42,13 +42,15 @@ class MyAdminController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     *  @param  UpdateRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UpdateRequest $request)
     {
         $arrayForSql = $request->except('_token', 'image', 'form1', 'categories');
-        $arrayForSql['imgPath'] = $request->file('image')->store('testImg', 'public');
+        if ($request->image) {
+            $arrayForSql['imgPath'] = $request->file('image')->store('testImg', 'public');
+        }
         $created = News::create($arrayForSql);
         if ($created) {
             foreach ($request->input('categories') as $cat) {
