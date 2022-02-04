@@ -7,11 +7,8 @@ use App\Http\Requests\News\UpdateRequest;
 use App\Models\Catrgoty;
 use App\Models\News;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
 
-use function GuzzleHttp\json_decode;
 
 class MyAdminController extends Controller
 {
@@ -64,13 +61,11 @@ class MyAdminController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  News $myAdmin
      * @return \Illuminate\Http\Response
      */
-    public function show(News $myAdmin)
+    public function show()
     {
 
-       return view('singleNews', ['news' => $myAdmin]);
     }
 
     /**
@@ -82,14 +77,14 @@ class MyAdminController extends Controller
      */
     public function edit(Request $request, News $myAdmin)
     {
-        $r = $request->header('referer');
+        $referer = $request->header('referer');
         $cat = Catrgoty::all();
         $selected = DB::table('catygory_has_news')->where('news_id', $myAdmin->id)->get()->map(fn ($item) => $item->catigory_id)->toArray();
         return view('admin.edit', [
             'news' => $myAdmin,
             'categories' => $cat,
             'selected' => $selected,
-            'r' => $r
+            'referer' => $referer
         ]);
     }
 
@@ -108,7 +103,6 @@ class MyAdminController extends Controller
         }
         $update = $myAdmin->fill($arrayForSql)->save();
         if ($update) {
-
             if ($request->categories) {
                 $myAdmin->categoriNews()->detach($myAdmin->categories);
                 foreach ($request->input('categories') as $cat) {

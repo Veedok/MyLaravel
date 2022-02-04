@@ -14,7 +14,7 @@
 <section class="container product_description">
             @csrf
             @method('put')
-            <input type="hidden" name="form1" value="{{$r}}">
+            <input type="hidden" name="form1" value="{{$referer}}">
         <input class="f-points product_name" type="text" name="title" placeholder="Заголовок" id="title" value="{{ $news->title }}">
         @error('title')
         <div class="error">{{ $message }}</div>

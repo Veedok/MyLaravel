@@ -24,8 +24,8 @@ Route::get('/', function () {
 });
 Route::get('/news', [ParentController::class, 'index']);
 Route::get('/categoryNews/{category_id}', [CategoryNewsController::class, 'index']);
-Route::get('/singleNews/{news}', [ParentController::class, 'show']);
-Route::get('/categoryNews', [CategoryNewsController::class, 'allcatigories']);
+Route::get('/singleNews/{news}', [ParentController::class, 'singleNews']);
+Route::get('/categoryNews', [CategoryNewsController::class, 'index']);
 Route::group(['as' => 'admin.'], function() {
 Route::resource('/admin/myAdmin', MyAdminController::class);
 Route::resource('/admin/cat', CetegoriesController::class);
