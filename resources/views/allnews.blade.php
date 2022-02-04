@@ -1,5 +1,6 @@
 @extends('loyouts.mainLayer')
 @section('content')
+
     <div class="container all_products">
         <aside class="choice_menu">
             <details class="choise_menu">
