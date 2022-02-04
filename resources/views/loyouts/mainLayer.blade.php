@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
+
 <head>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta charset="UTF-8">
@@ -13,9 +15,13 @@
 </head>
 
 <body>
-    <script src="{{ asset("js/j.js") }}"></script>
+    <script src="{{ asset('js/j.js') }}"></script>
     <x-header></x-header>
-    <x-nav></x-nav>
+    @if (Auth::user())
+        @if (Auth::user()->admin)
+            <x-nav></x-nav>
+        @endif
+    @endif
     <main>
         @yield('content')
         <div class="black_line">

@@ -1,5 +1,6 @@
 @extends('loyouts.mainLayer')
 @section('content')
+
     <aside class="container s_c_form">
         <div class="total">
             <a href="/admin/cat/create">Новая категория</a>

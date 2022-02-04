@@ -44,7 +44,8 @@
 
         <div class="login">
             <a href="#"><img src="{{asset('img/cart.png')}}" alt=""></a>
-            <div class="account"><button>My Account <i class="fas fa-caret-down"></i></button>
+            <div class="account"><a href="/login"><button>My Account <i class="fas fa-caret-down"></i></button></a>
+                <a href="/register"><button>My Account <i class="fas fa-caret-down"></i></button></a>
                 <div class="drop_cart">
                     <div class="drop_cart_one_product"><img src="{{ asset('img/hhd/rectangle_24_1821.jpg') }}" alt="#">
                         <div>
