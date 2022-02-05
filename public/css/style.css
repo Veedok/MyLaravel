@@ -2577,3 +2577,8 @@ h5.r_cvc {
   text-align: end;
   width: 380px;
 }
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
