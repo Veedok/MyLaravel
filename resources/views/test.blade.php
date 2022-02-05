@@ -1,15 +1,14 @@
 @extends('loyouts.mainLayer')
 @section('content')
-@dump($allusers)
 <div class="container">
     <table class="myTable">
         <thead>
             <tr>
                 <th>ID</th>
-                <th>Title</th>
-                <th>IMG</th>
-                <th>Cat</th>
-                <th>Заглушка</th>
+                <th>Admin?</th>
+                <th>Email</th>
+                <th>Name</th>
+                <th>Действие</th>
             </tr>
         </thead>
         <tbody>
@@ -25,8 +24,8 @@
                     <th>{{ $value->email }}</th>
                     <th>{{ $value->name }}</th>
                     <th>
-                        <a class="redact" href="{{ route('admin.user.edit', ['User' => $value]) }}">Редактировать</a>
-                        <a href="javascript:" id="222" class="destroy redact" rel="{{ $value->id }}">Удалить</a>
+                        <a class="redact" href="{{ route('admin.user.edit', ['user' => $value]) }}">Статус админа вкл/выкл</a>
+                        {{-- <a href="javascript:" id="222" class="destroy redact" rel="{{ $value->id }}">Удалить</a> --}}
                     </th>
                 </tr>
             @empty

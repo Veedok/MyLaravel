@@ -15,8 +15,8 @@ class UsersController extends Controller
      */
     public function index()
     {
-            $allUsers = User::all();
-            return view('test', ['allusers' => $allUsers]);
+        $allUsers = User::all();
+        return view('test', ['allusers' => $allUsers]);
     }
 
     /**
@@ -54,12 +54,20 @@ class UsersController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  User $user
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
-        //
+        if ($user->admin == 1) {
+            $user->admin = 0;
+            $user->save();
+        } else {
+            $user->admin = 1;
+            $user->save();
+        }
+        $allUsers = User::all();
+        return view('test', ['allusers' => $allUsers]);
     }
 
     /**
