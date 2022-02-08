@@ -4,22 +4,21 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Facades\DB;
 
 class News extends Model
 {
     use HasFactory;
     protected $table = 'news';
-    public function getNews () {
-        return DB::table($this->table)->select(['id', 'title', 'author', 'desc', 'imgPath'])->get()->toArray();
-    }
-    public function getNewsByID ($id) {
-        return DB::select("select * where id = :id from {$this->table}", ['id' => $id]);
-    }
-    public function addNews ($title, $author, $desc, $imgPath) {
+    public static $select = ['id', 'title', 'author', 'desc', 'imgPath'];
+    protected $fillable =[
+        'title', 'author', 'desc', 'imgPath'
+    ];
 
-        DB::insert("insert into mylaravel.{$this->table} (title, author, `desc`, imgPath) values ('$title', '$author', '$desc', '$imgPath');");
-        echo 'allok';
-    }
 
+    public function categoriNews () : BelongsToMany {
+        return $this->belongsToMany(Catrgoty::class, 'catygory_has_news', 'news_id' , 'catigory_id');
+    }
 }
+

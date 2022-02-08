@@ -1,5 +1,36 @@
 @extends('loyouts.mainLayer')
 @section('content')
+<form class="adress_form full_description" action="{{ route('admin.myAdmin.store') }}" method="POST"
+    enctype="multipart/form-data">
+<section class="single_scroll">
+    <label class="f-points lablefromfile" for="file_input">
+        <input accept="image/* class=" myinput" id="file_input" type="file" name="image"
+            onchange="loadFile(event)">Загрузи что то</label>
+    <img id="output" src="{{ asset('storage/') }}"/>
+</section>
+<section class="container product_description">
+
+            @csrf
+
+            
+        <input class="f-points product_name" type="text" name="title" placeholder="Заголовок" id="title" value="{{old('title')}}">
+        <input class="f-points" type="text" name="author" placeholder="Автор" id="author"
+        value="{{old('author')}}">
+        <textarea class="f-points" name="desc" id="discription" cols="300" rows="10" placeholder="Новость">{{old('desc')}}</textarea>
+        <select class="f-points cat" name="categories[]" id="categories" multiple>
+            @foreach ($categories as $cat )
+<option value="{{$cat->id}}">{{$cat->catigory}}</option>
+            @endforeach
+        </select>
+        <input class="sub_form" type="submit" value="Опубликовать">
+        </div>
+
+</section>
+</form>
+@endsection
+
+{{-- @extends('loyouts.mainLayer')
+@section('content')
 <aside class="container s_c_form">
     <div>
         <form class="adress_form" action='{{route('admin.myAdmin.store')}}' method="POST" enctype="multipart/form-data">
@@ -9,13 +40,17 @@
             <input class="f-points" type="text" name="title" placeholder="Заголовок" id="title" value="{{old('title')}}">
             <textarea class="f-points" name="desc" id="discription" cols="30" rows="10" placeholder="Новость" value="{{old('desc')}}"></textarea>
             <input class="f-points" type="text" name="author" placeholder="Автор" id="author" value="{{old('author')}}">
-            <label class="f-points lablefromfile" for="file_input"><input class="myinput" id="file_input"  type="file" name="image">Загрузи что то</label>
+            <label class="f-points lablefromfile" for="file_input">
+                <input accept="image/* class="myinput" id="file_input" type="file" name="image"
+                    onchange="loadFile(event)">Загрузи что то</label>
+            <img id="output"/>
+            <select class="f-points cat" name="categories[]" id="categories" multiple>
+                @foreach ($categories as $cat )
+<option value="{{$cat->id}}">{{$cat->catigory}}</option>
+                @endforeach
+            </select>
             <input class="sub_form" type="submit" value="Опубликовать" >
-            {{-- <label class="lable_checkbox">
-                <input type="checkbox" name="myCheck" id="1">
-                <span>Галочка</span>
-                </label>
-            <input class="f-points" type="number" placeholder="Postcode / Zip"> --}}
+
         </form>
     </div>
     <div>
@@ -44,4 +79,4 @@
 <img src="{{ asset('/storage/' . $path)}}" alt="#">
 @endisset
 @endsection
-
+ --}}

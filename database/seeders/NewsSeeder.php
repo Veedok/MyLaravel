@@ -24,8 +24,7 @@ class NewsSeeder extends Seeder
             $myNews[] = [
                 'title' => $faker->jobTitle(),
                 'desc' => $faker->text(800),
-                'author' => $faker->userName(),
-                'imgPath' => $faker->userName()
+                'author' => $faker->userName()
             ];
         }
 

@@ -174,10 +174,10 @@
 
 .total {
     display: flex;
-    justify-content: space-between;
-    min-width: 1000px;
+    justify-content: flex-end;
+    min-width: 1140px;
     padding: 43px;
-    background-color: #f5f3f3;
+
 }
 .select:after {
     color: #bdbdbd;
@@ -189,6 +189,7 @@
 }
 
 .total a {
+    margin: 10px;
     text-decoration: none;
     text-align: center;
     padding-top: 14px;
@@ -234,6 +235,10 @@
     text-transform: uppercase;
     color: #4a4a4a;
     .text_stayle_mixin(11px, 1.2, 700);
+    margin: 20px;
+    width: 350px;
+    height: 55px;
+
 }
 .sub_form:hover {
     background-color: #d8d8d8;
@@ -246,5 +251,42 @@
     z-index: -1;
 }
 .lablefromfile {
+    background-color: #f16d7f;
+    z-index: 1;
     cursor: pointer;
 }
+.wid{
+    width: 100%;
+}
+.cat {
+    height: 300px;
+}
+.redact {
+    text-decoration: none;
+    text-align: center;
+    padding: 14px;
+    margin: 17px;
+    border: none;
+    cursor: pointer;
+    width: 150px;
+    height: 50px;
+    background-color: @main-pink;
+    text-transform: uppercase;
+    color: #ffffff;
+    .text_stayle_mixin(16px, 1.2, 700);
+}
+.redactCat{
+
+text-decoration: none;
+text-align: center;
+padding: 14px;
+margin: 17px;
+border: none;
+cursor: pointer;
+width: 150px;
+height: 50px;
+background-color: @main-pink;
+text-transform: uppercase;
+color: #ffffff;
+.text_stayle_mixin(10px, 1.2, 700);
+}  
