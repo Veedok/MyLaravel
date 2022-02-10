@@ -17,11 +17,7 @@
 <body>
     <script src="{{ asset('js/j.js') }}"></script>
     <x-header></x-header>
-    @if (Auth::user())
-        @if (Auth::user()->admin)
             <x-nav></x-nav>
-        @endif
-    @endif
     <main>
         @yield('content')
         <div class="black_line">

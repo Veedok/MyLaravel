@@ -233,6 +233,9 @@ input[type="number"]:focus {
   margin-left: 25px;
 }
 .account {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   position: relative;
 }
 .account:hover .drop_cart {
@@ -2581,4 +2584,54 @@ h5.r_cvc {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-left: 75px;
+}
+.card-header {
+  font-family: Lato;
+  font-size: 25px;
+  line-height: 25px;
+  font-weight: 900;
+}
+.product_name_auth {
+  margin: 20px;
+  text-transform: uppercase;
+  color: #4d4d4d;
+  font-family: Lato;
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: 900;
+}
+.offset {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.sub_form_auth {
+  cursor: pointer;
+  background-color: #ffffff;
+  border: 1px solid #eaeaea;
+  text-transform: uppercase;
+  color: #4a4a4a;
+  font-family: Lato;
+  font-size: 20px;
+  line-height: 1.2;
+  font-weight: 700;
+  margin: 20px;
+  width: 200px;
+  height: 55px;
+}
+.sub_form_auth:hover {
+  background-color: #d8d8d8;
+}
+.button_logout {
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: 900;
+  border: none;
+  background-color: #f16d7f;
+  font-family: Lato;
+  letter-spacing: 0.025em;
+  color: #ffffff;
+  padding: 0px 15px;
+  margin-left: 25px;
 }

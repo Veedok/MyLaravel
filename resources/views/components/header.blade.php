@@ -44,9 +44,9 @@
 
         <div class="login">
             <a href="#"><img src="{{asset('img/cart.png')}}" alt=""></a>
-            <div class="account"><a href="/login"><button>My Account <i class="fas fa-caret-down"></i></button></a>
-                <a href="/register"><button>My Account <i class="fas fa-caret-down"></i></button></a>
-                <div class="drop_cart">
+            <div class="account"><a href="/login"><button>Войти</button></a>
+                <a href="/register"><button>Зарегистрировать нового пользователя</button></a>
+                {{-- <div class="drop_cart">
                     <div class="drop_cart_one_product"><img src="{{ asset('img/hhd/rectangle_24_1821.jpg') }}" alt="#">
                         <div>
                             <h4>Rebox Zane</h4>
@@ -86,7 +86,7 @@
                             href="shopping-cart.html">Go to cart</a>
 
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
 
