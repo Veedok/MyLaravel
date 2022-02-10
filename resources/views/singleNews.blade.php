@@ -8,4 +8,5 @@
             <div class="catalog_text_desc1">{{ $news->desc }}</div>
         </div>
     </div>
+    
 @endsection

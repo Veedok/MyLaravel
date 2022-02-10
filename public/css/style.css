@@ -1668,7 +1668,6 @@ p {
 }
 .product_name {
   margin-top: 100px;
-  margin-bottom: 73px;
   text-transform: uppercase;
   color: #4d4d4d;
   font-family: Lato;
@@ -1822,6 +1821,17 @@ input::-webkit-inner-spin-button {
 }
 #output {
   width: 1250px;
+}
+.error {
+  width: 90%;
+  text-align: center;
+  height: 35px;
+  background-color: #ff001d;
+  text-transform: uppercase;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .flex_checkout {
   display: flex;

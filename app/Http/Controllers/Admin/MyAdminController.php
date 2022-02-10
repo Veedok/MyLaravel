@@ -3,14 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\News\UpdateRequest;
 use App\Models\Catrgoty;
 use App\Models\News;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
 
-use function GuzzleHttp\json_decode;
 
 class MyAdminController extends Controller
 {
@@ -41,13 +39,15 @@ class MyAdminController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     *  @param  UpdateRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UpdateRequest $request)
     {
         $arrayForSql = $request->except('_token', 'image', 'form1', 'categories');
-        $arrayForSql['imgPath'] = $request->file('image')->store('testImg', 'public');
+        if ($request->image) {
+            $arrayForSql['imgPath'] = $request->file('image')->store('testImg', 'public');
+        }
         $created = News::create($arrayForSql);
         if ($created) {
             foreach ($request->input('categories') as $cat) {
@@ -61,12 +61,11 @@ class MyAdminController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  News $news
      * @return \Illuminate\Http\Response
      */
-    public function show(News $news)
+    public function show()
     {
-        //
+
     }
 
     /**
@@ -76,27 +75,27 @@ class MyAdminController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request,News $myAdmin)
+    public function edit(Request $request, News $myAdmin)
     {
-        $r = $request->header('referer');
+        $referer = $request->header('referer');
         $cat = Catrgoty::all();
         $selected = DB::table('catygory_has_news')->where('news_id', $myAdmin->id)->get()->map(fn ($item) => $item->catigory_id)->toArray();
         return view('admin.edit', [
             'news' => $myAdmin,
             'categories' => $cat,
             'selected' => $selected,
-            'r' => $r
+            'referer' => $referer
         ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  UpdateRequest $request
      * @param  News $myAdmin
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, News $myAdmin)
+    public function update(UpdateRequest $request, News $myAdmin)
     {
         $arrayForSql = $request->except('_token', 'image', 'form1', 'categories');
         if ($request->image) {
@@ -104,9 +103,11 @@ class MyAdminController extends Controller
         }
         $update = $myAdmin->fill($arrayForSql)->save();
         if ($update) {
-            $myAdmin->categoriNews()->detach($myAdmin->categories);
-            foreach ($request->input('categories') as $cat) {
-                $myAdmin->categoriNews()->attach($cat);
+            if ($request->categories) {
+                $myAdmin->categoriNews()->detach($myAdmin->categories);
+                foreach ($request->input('categories') as $cat) {
+                    $myAdmin->categoriNews()->attach($cat);
+                }
             }
             return redirect($request->form1);
         }

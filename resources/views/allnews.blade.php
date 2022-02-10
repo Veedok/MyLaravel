@@ -83,7 +83,7 @@
                 @endforelse
             </article>
             {{$new->links('components.pagination')}}
-           
+
         </section>
     </div>
 @endsection
