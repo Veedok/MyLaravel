@@ -1,4 +1,4 @@
-@extends('loyouts.mainlayer')
+@extends('loyouts.mainLayer')
 
 @section('content')
 <div class="container">
