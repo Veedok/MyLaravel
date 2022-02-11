@@ -5,9 +5,11 @@
             <li><a class="menu" href="/news">All news</a></li>
             @if (Auth::user())
         @if (Auth::user()->admin)
+
         <li><a class="menu" href="/admin/cat">Category</a></li>
         <li><a class="menu" href="/admin/myAdmin">Admin</a></li>
-        <li><a class="menu" href="/test">Test</a></li>
+        <li><a class="menu" href="/user">Users</a></li>
+        <li><a class="menu" href="/parser">Parser</a></li>
         @endif
     @endif
 

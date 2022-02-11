@@ -6,9 +6,11 @@
             <tr>
                 <th>ID</th>
                 <th>Admin?</th>
+                <th>avatar</th>
                 <th>Email</th>
                 <th>Name</th>
                 <th>Действие</th>
+
             </tr>
         </thead>
         <tbody>
@@ -21,6 +23,9 @@
                         <p>no</p>
                         @endif
                     </th>
+                    <th>@if ($value->avatar)
+                        <img src="{{$value->avatar}}" alt="">
+                    @endif</th>
                     <th>{{ $value->email }}</th>
                     <th>{{ $value->name }}</th>
                     <th>
