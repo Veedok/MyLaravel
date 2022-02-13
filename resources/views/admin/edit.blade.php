@@ -25,7 +25,7 @@
         @error('author')
         <div class="error">{{ $message }}</div>
         @enderror
-        <textarea class="f-points" name="desc" id="discription" cols="300" rows="10" placeholder="Новость">{{ $news->desc }}</textarea>
+        <textarea class="f-points editor" name="desc" id="discription" cols="300" rows="10" placeholder="Новость">{{ $news->desc }}</textarea>
         @error('desc')
         <div class="error">{{ $message }}</div>
         @enderror
@@ -43,3 +43,12 @@
 </section>
 </form>
 @endsection
+@push('js')
+<script>
+    tinymce.init({
+      selector: '.editor',
+
+    //   inline: true,
+    });
+  </script>
+@endpush

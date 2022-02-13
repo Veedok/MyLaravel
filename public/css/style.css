@@ -1448,6 +1448,9 @@ p {
   line-height: 1.2;
   font-weight: 700;
 }
+.editor {
+  display: block;
+}
 .f-points:focus {
   background-color: #efefef;
 }
@@ -2634,4 +2637,7 @@ h5.r_cvc {
   color: #ffffff;
   padding: 0px 15px;
   margin-left: 25px;
+}
+.dropdown-item {
+  text-decoration: none;
 }

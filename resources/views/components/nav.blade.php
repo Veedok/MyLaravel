@@ -10,6 +10,8 @@
         <li><a class="menu" href="/admin/myAdmin">Admin</a></li>
         <li><a class="menu" href="/user">Users</a></li>
         <li><a class="menu" href="/parser">Parser</a></li>
+        <li><a class="menu" href="/url">Parser url</a></li>
+
         @endif
     @endif
 

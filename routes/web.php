@@ -7,6 +7,7 @@ use App\Http\Controllers\ParentController;
 use App\Http\Controllers\Admin\CetegoriesController;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\ParserController;
+use App\Http\Controllers\ParsingurlController;
 use App\Http\Controllers\SocialController;
 use App\Http\Controllers\TestController;
 use Illuminate\Support\Facades\Auth;
@@ -30,6 +31,7 @@ Route::group(['middleware' => 'auth'], function(){
         Route::resource('/admin/myAdmin', MyAdminController::class);
         Route::resource('/admin/cat', CetegoriesController::class);
         Route::resource('/user', UsersController::class);
+        Route::resource('/url', ParsingurlController::class);
         });
 
 });
