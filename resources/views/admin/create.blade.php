@@ -1,5 +1,6 @@
 @extends('loyouts.mainLayer')
 @section('content')
+
 <form class="adress_form full_description" action="{{ route('admin.myAdmin.store') }}" method="POST"
     enctype="multipart/form-data">
 <section class="single_scroll">

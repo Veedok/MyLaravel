@@ -1,15 +1,9 @@
 window._ = require('lodash');
 
 try {
+    require('bootstrap');
+} catch (e) {}
 
-    window.$ = window.jQuery = require('jquery');
-
-    require('select2');
-    $('select').select2();
-
-} catch (error) {
-    console.log(error);
-}
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
  * to our Laravel back-end. This library automatically handles sending the

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\News\UpdateRequest;
 use App\Models\Catrgoty;
 use App\Models\News;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -24,6 +25,7 @@ class MyAdminController extends Controller
             'news' => $news,
         ]);
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -128,4 +130,5 @@ class MyAdminController extends Controller
             return response()->json('error', 400);
         }
     }
+
 }
