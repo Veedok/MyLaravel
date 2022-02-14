@@ -6,8 +6,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ParentController;
 use App\Http\Controllers\Admin\CetegoriesController;
 use App\Http\Controllers\Admin\UsersController;
+use App\Http\Controllers\ParserController;
+use App\Http\Controllers\SocialController;
 use App\Http\Controllers\TestController;
-
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,10 +33,11 @@ Route::group(['middleware' => 'auth'], function(){
         });
 
 });
-Route::get('/news', [ParentController::class, 'index']);
+Route::get('/news', [ParentController::class, 'index'])->name('news');
 Route::get('/categoryNews/{category_id}', [CategoryNewsController::class, 'index']);
 Route::get('/singleNews/{news}', [ParentController::class, 'singleNews']);
 Route::get('/categoryNews', [CategoryNewsController::class, 'index']);
+Route::get('/parser', ParserController::class);
 
 
 Auth::routes();
@@ -44,3 +47,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::group(['middleware' => 'guest'], function(){
+    Route::get('auth/{network}/redirect', [SocialController::class, 'redirect'])->where('network', '\w+')->name('auth.redirect');
+    Route::get('auth/{network}/callback', [SocialController::class, 'callback'])->where('network', '\w+')->name('auth.callback');
+});

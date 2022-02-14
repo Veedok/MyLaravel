@@ -30,7 +30,8 @@ class RegisterController extends Controller
      * @var string
      */
     protected $redirectTo = RouteServiceProvider::NEWS;
-    public function showRegistrationForm() {
+    public function showRegistrationForm()
+    {
         return view('auth.register');
     }
 
@@ -67,10 +68,15 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $dataArr = [
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-        ]);
+        ];
+        if ($data['avatar']) {
+            $dataArr['avatar'] = $data['avatar'];
+        }
+        // dd($dataArr);
+        return User::create($dataArr);
     }
 }
