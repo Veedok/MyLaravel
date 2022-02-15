@@ -12,12 +12,14 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,400&display=swap"
         rel="stylesheet">
+        <script src="https://cdn.tiny.cloud/1/g238fh4o88c0fiorg6jgun6716walcu22fkg63blmbqvrozo/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+
 </head>
 
 <body>
     <script src="{{ asset('js/j.js') }}"></script>
     <x-header></x-header>
-            <x-nav></x-nav>
+    <x-nav></x-nav>
     <main>
         @yield('content')
         <div class="black_line">

@@ -46,7 +46,8 @@ class MyAdminController extends Controller
      */
     public function store(UpdateRequest $request)
     {
-        $arrayForSql = $request->except('_token', 'image', 'form1', 'categories');
+        // dd($request->except('_token', 'form1'));
+        $arrayForSql = $request->except('_token', 'form1');
         if ($request->image) {
             $arrayForSql['imgPath'] = $request->file('image')->store('testImg', 'public');
         }
